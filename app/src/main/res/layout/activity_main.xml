@@ -49,10 +49,19 @@
 
     <Button
         android:layout_marginTop="50dp"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="20dp"
         android:text="Show Buses"
         android:layout_gravity="center_horizontal"
-        android:onClick="changeActivity" />
+        android:onClick="showBuses" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="Add Ride"
+        android:layout_gravity="center_horizontal"
+        android:onClick="addRide"/>
 
 </LinearLayout>

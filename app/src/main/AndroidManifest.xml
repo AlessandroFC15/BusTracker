@@ -17,6 +17,8 @@
         </activity>
         <activity android:name=".ShowBuses" >
         </activity>
+        <activity android:name=".AddRide" >
+        </activity>
     </application>
 
 </manifest>
