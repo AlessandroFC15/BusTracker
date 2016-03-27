@@ -60,7 +60,7 @@ public class ShowBuses extends AppCompatActivity {
 
         textView.setText(nameOfBus);
         textView.setTextSize(16);
-        textView.setPadding(10, 10, 10, 11);
+        textView.setPadding(10, 10, 10, 10);
         textView.setGravity(Gravity.CENTER_HORIZONTAL);
 
         layout.addView(textView);
