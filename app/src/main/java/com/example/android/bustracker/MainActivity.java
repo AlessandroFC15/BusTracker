@@ -7,12 +7,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity {
 
     // Attributes
-    private ArrayList<String> listOfBuses = new ArrayList<String>();
+    private BusData busData = BusData.getInstance();
 
     // Constants
     public final static String LIST_BUSES = "com.example.android.BusTracker.LIST_BUSES";
@@ -34,9 +32,9 @@ public class MainActivity extends AppCompatActivity {
 
         if (nameOfBus.length() > 0)
         {
-            if (!isBusRegistered(nameOfBus))
+            if (!busData.isBusRegistered(nameOfBus))
             {
-                listOfBuses.add(nameOfBus);
+                busData.addBus(nameOfBus);
 
                 clearNameInputField();
 
@@ -65,11 +63,6 @@ public class MainActivity extends AppCompatActivity {
         input.setText("");
     }
 
-    private boolean isBusRegistered(String nameOfBus)
-    {
-        return listOfBuses.contains(nameOfBus);
-    }
-
     private void makeToast(String text)
     {
         Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
@@ -82,16 +75,12 @@ public class MainActivity extends AppCompatActivity {
     {
         Intent intent = new Intent(this, ShowBuses.class);
 
-        intent.putExtra(LIST_BUSES, listOfBuses);
-
         startActivity(intent);
     }
 
     public void addRide(View view)
     {
         Intent intent = new Intent(this, AddRide.class);
-
-        intent.putExtra(LIST_BUSES, listOfBuses);
 
         startActivity(intent);
     }
