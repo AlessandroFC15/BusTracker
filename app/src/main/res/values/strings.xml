@@ -1,4 +1,18 @@
 <resources>
     <string name="app_name">BusTracker</string>
+
+    <!-- Titles of Activities -->
+    <string name="add_new_bus">Add New Bus</string>
+
+    <!-- Input -->
+
+    <string name="name_bus">Name of Bus</string>
+
+    <!-- Buttons -->
+    <string name="add">Add</string>
+    <string name="show_buses">Show Buses</string>
+    <string name="add_ride">Add Ride</string>
+
+    <!-- Warnings -->
     <string name="no_buses_registered">There are no buses registered!</string>
 </resources>

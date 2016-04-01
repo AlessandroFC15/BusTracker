@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:padding="16dp"
-        android:text="BusTracker"
+        android:text="@string/app_name"
         android:textColor="#c01b67"
         android:textSize="30sp" />
 
@@ -26,7 +26,8 @@
         android:layout_marginBottom="80dp"
         android:layout_marginTop="20dp"
         android:gravity="center_horizontal"
-        android:text="ADD NEW BUS"
+        android:text="@string/add_new_bus"
+        android:textAllCaps="true"
         android:textSize="20sp" />
 
     <EditText
@@ -36,7 +37,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="16dp"
         android:gravity="center"
-        android:hint="Name of Bus"
+        android:hint="@string/name_bus"
         android:inputType="textCapWords"
         android:padding="12dp" />
 
@@ -45,23 +46,25 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:onClick="addBus"
-        android:text="Add" />
+        android:text="@string/add"
+        android:textAllCaps="true"/>
 
     <Button
         android:layout_marginTop="50dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="20dp"
-        android:text="Show Buses"
+        android:text="@string/show_buses"
         android:layout_gravity="center_horizontal"
+        android:textAllCaps="true"
         android:onClick="showBuses" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="20dp"
-        android:text="Add Ride"
+        android:text="@string/add_ride"
+        android:textAllCaps="true"
         android:layout_gravity="center_horizontal"
         android:onClick="addRide"/>
-
 </LinearLayout>
