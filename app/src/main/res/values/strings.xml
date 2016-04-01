@@ -3,9 +3,10 @@
 
     <!-- Titles of Activities -->
     <string name="add_new_bus">Add New Bus</string>
+    <string name="buses">Buses</string>
+
 
     <!-- Input -->
-
     <string name="name_bus">Name of Bus</string>
 
     <!-- Buttons -->

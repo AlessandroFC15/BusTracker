@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:padding="16dp"
-        android:text="BusTracker"
+        android:text="@string/app_name"
         android:textColor="#c01b67"
         android:textSize="30sp" />
 
@@ -24,7 +24,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="ADD RIDE"
+        android:text="@string/add_ride"
+        android:textAllCaps="true"
         android:textSize="25sp" />
 
     <LinearLayout
@@ -46,7 +47,7 @@
                 android:paddingLeft="16dp"
                 android:paddingBottom="16dp"
                 android:text="Bus: "
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <Spinner
                 android:id="@+id/busSpinner"
@@ -60,7 +61,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Ride"
+            android:text="@string/add_ride"
             android:layout_gravity="center_horizontal"
             android:onClick="addRide"/>
     </LinearLayout>
