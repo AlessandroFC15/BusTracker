@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BusTracker</string>
+    <string name="no_buses_registered">There are no buses registered!</string>
 </resources>

@@ -30,7 +30,7 @@ public class ShowBuses extends AppCompatActivity {
     {
         TextView warning = new TextView(this);
 
-        warning.setText("No buses were registered!");
+        warning.setText(R.string.no_buses_registered);
         warning.setTextSize(16);
         warning.setGravity(Gravity.CENTER_HORIZONTAL);
 

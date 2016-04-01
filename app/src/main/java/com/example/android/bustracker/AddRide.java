@@ -75,7 +75,7 @@ public class AddRide extends AppCompatActivity implements AdapterView.OnItemSele
 
         TextView warning = new TextView(this);
 
-        warning.setText("No buses are registered!");
+        warning.setText(R.string.no_buses_registered);
         warning.setTextSize(16);
         warning.setGravity(Gravity.CENTER_HORIZONTAL);
 
