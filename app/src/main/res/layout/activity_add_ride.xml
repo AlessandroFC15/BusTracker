@@ -43,9 +43,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="16dp"
-                android:paddingLeft="16dp"
                 android:paddingBottom="16dp"
+                android:paddingLeft="16dp"
+                android:paddingTop="16dp"
                 android:text="Bus: "
                 android:textSize="16sp" />
 
@@ -53,17 +53,16 @@
                 android:id="@+id/busSpinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="16dp"
                 android:paddingBottom="16dp"
-                ></Spinner>
+                android:paddingTop="16dp"></Spinner>
         </LinearLayout>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/add_ride"
             android:layout_gravity="center_horizontal"
-            android:onClick="addRide"/>
+            android:onClick="addRide"
+            android:text="@string/add_ride" />
     </LinearLayout>
 
 </LinearLayout>

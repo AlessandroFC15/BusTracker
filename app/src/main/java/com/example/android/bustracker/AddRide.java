@@ -90,27 +90,22 @@ public class AddRide extends AppCompatActivity implements AdapterView.OnItemSele
         layout.removeAllViews();
     }
 
-    public void addRide(View view)
-    {
+    public void addRide(View view) {
         // Validate bus selection
-        if (busSelected.equals(""))
-        {
+        if (busSelected.equals("")) {
             makeToast("Select a bus!");
-            return ;
+            return;
         }
         // We proceed to add a ride for that bus
-        if (busData.addRide(busSelected) == false)
-        {
+        if (busData.addRide(busSelected) == false) {
             makeToast("Operation failed. Try again!");
-        } else
-        {
+        } else {
             makeToast("Ride for bus " + busSelected + " added!");
         }
 
     }
 
-    private void makeToast(String text)
-    {
+    private void makeToast(String text) {
         Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
         toast.show();
     }

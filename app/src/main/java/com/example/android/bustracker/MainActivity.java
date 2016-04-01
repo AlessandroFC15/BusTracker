@@ -23,63 +23,54 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * This method gets called when the Button Add is pressed and proceeds to add a bus to the app.
+     *
      * @param view
      */
 
-    public void addBus(View view)
-    {
+    public void addBus(View view) {
         String nameOfBus = getNameInput();
 
-        if (nameOfBus.length() > 0)
-        {
-            if (!busData.isBusRegistered(nameOfBus))
-            {
+        if (nameOfBus.length() > 0) {
+            if (!busData.isBusRegistered(nameOfBus)) {
                 busData.addBus(nameOfBus);
 
                 clearNameInputField();
 
                 makeToast("Bus successfully added!");
-            } else
-            {
+            } else {
                 makeToast("Bus already registered");
             }
-        } else
-        {
+        } else {
             makeToast("Enter a valid name!");
         }
     }
 
     // Helper Function
 
-    private String getNameInput()
-    {
+    private String getNameInput() {
         EditText input = (EditText) findViewById(R.id.nameOfBus);
         return input.getText().toString().toUpperCase();
     }
 
-    private void clearNameInputField()
-    {
+    private void clearNameInputField() {
         EditText input = (EditText) findViewById(R.id.nameOfBus);
         input.setText("");
     }
 
-    private void makeToast(String text)
-    {
+    private void makeToast(String text) {
         Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
         toast.show();
     }
 
     // Functions to change activities
 
-    public void showBuses(View view)
-    {
+    public void showBuses(View view) {
         Intent intent = new Intent(this, ShowBuses.class);
 
         startActivity(intent);
     }
 
-    public void addRide(View view)
-    {
+    public void addRide(View view) {
         Intent intent = new Intent(this, AddRide.class);
 
         startActivity(intent);
