@@ -27,6 +27,8 @@ public class AddRide extends AppCompatActivity implements AdapterView.OnItemSele
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_ride);
 
+        setTitle("Add Ride");
+
         if (nameOfBuses.isEmpty()) {
             printWarning();
         } else {

@@ -17,6 +17,8 @@ public class ShowBuses extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_buses);
 
+        setTitle("Show Buses");
+
         listOfBuses = BusData.getInstance().getListOfBuses();
 
         if (listOfBuses.isEmpty()) {
