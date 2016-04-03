@@ -14,46 +14,6 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String[] allActivities;
-    private DrawerLayout drawerLayout;
-    private ListView drawerList;
-
-    // Part of the code related to the menu
-
-    private class DrawerItemClickListener implements ListView.OnItemClickListener {
-        @Override
-        public void onItemClick(AdapterView parent, View view, int position, long id) {
-            selectItem(position);
-
-            changeActivity(position);
-        }
-    }
-
-    private void changeActivity(int position)
-    {
-        String input = allActivities[position];
-
-        if (input.equals("Home"))
-        {
-            makeToast("Home already selected!");
-        } else if (input.equals("Show Buses"))
-        {
-            showBuses();
-        } else if (input.equals("Add Ride"))
-        {
-            addRide();
-        } else
-        {
-            makeToast("Option not configured yet!");
-        }
-    }
-
-    private void selectItem(int position) {
-        // Highlight the selected item, update the title, and close the drawer
-        drawerList.setItemChecked(position, true);
-        drawerLayout.closeDrawer(drawerList);
-    }
-
     // Attributes
     private BusData busData = BusData.getInstance();
 
@@ -66,40 +26,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle("Home");
 
-        allActivities = getResources().getStringArray(R.array.all_activities);
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawerList = (ListView) findViewById(R.id.left_drawer);
+        configureMenu();
+    }
 
-        // set a custom shadow that overlays the main content when the drawer opens
-        drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+    public void onResume()
+    {
+        // Always call the superclass method first
+        super.onResume();
 
-        // Set the adapter for the list view
-        drawerList.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.drawer_list_item, allActivities));
-        // Set the list's click listener
-        drawerList.setOnItemClickListener(new DrawerItemClickListener());
-
-        drawerLayout.setDrawerListener(new DrawerLayout.DrawerListener() {
-            @Override
-            public void onDrawerSlide(View view, float v) {
-
-            }
-
-            @Override
-            public void onDrawerOpened(View view) {
-
-            }
-
-            @Override
-            public void onDrawerClosed(View view) {
-
-            }
-
-            @Override
-            public void onDrawerStateChanged(int i) {
-
-            }
-        });}
+        // Set home as checked. Home is the first
+        drawerList.setItemChecked(HOME_INDEX, true);
+    }
 
     /**
      * This method gets called when the Button Add is pressed and proceeds to add a bus to the app.
@@ -142,18 +79,103 @@ public class MainActivity extends AppCompatActivity {
         toast.show();
     }
 
-    // Functions to change activities
+    // Part of the code related to the drawer menu
 
-    private void showBuses() {
-        Intent intent = new Intent(this, ShowBuses.class);
+    private DrawerLayout drawerLayout;
+    // String array to hold the choices in the drawer menu
+    private String[] allActivities;
+    private ListView drawerList;
+    private static final int HOME_INDEX = 0;
+    private static final int SHOW_BUSES_INDEX = 1;
+    private static final int ADD_RIDE_INDEX = 2;
 
-        startActivity(intent);
+    private void configureMenu()
+    {
+        configureDrawerLayout();
+
+        configureListView();
     }
 
-    private void addRide() {
-        Intent intent = new Intent(this, AddRide.class);
+    private void configureDrawerLayout()
+    {
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        startActivity(intent);
+        // Set a custom shadow that overlays the main content when the drawer opens
+        drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+
+        // Set the correct listener
+        drawerLayout.setDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(View view, float v) {
+
+            }
+
+            @Override
+            public void onDrawerOpened(View view) {
+
+            }
+
+            @Override
+            public void onDrawerClosed(View view) {
+
+            }
+
+            @Override
+            public void onDrawerStateChanged(int i) {
+
+            }
+        });
     }
+
+    private void configureListView()
+    {
+        drawerList = (ListView) findViewById(R.id.left_drawer);
+
+        // Get string array of all activities to be shown in the drawer menu
+        allActivities = getResources().getStringArray(R.array.all_activities);
+
+        drawerList.setAdapter(new ArrayAdapter<String>(this,
+                R.layout.drawer_list_item, allActivities));
+        drawerList.setItemChecked(0, true);
+
+        // Set the list's click listener
+        drawerList.setOnItemClickListener(new DrawerItemClickListener());
+    }
+
+    private class DrawerItemClickListener implements ListView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView parent, View view, int position, long id) {
+            selectItem(position);
+
+            changeActivity(position);
+        }
+    }
+
+    private void selectItem(int position) {
+        // Highlight the selected item and close the drawer
+        drawerList.setItemChecked(position, true);
+        drawerLayout.closeDrawer(drawerList);
+    }
+
+    private void changeActivity(int position)
+    {
+        String input = allActivities[position];
+
+        if (input.equals("Home"))
+        {
+            makeToast("Home already selected!");
+        } else if (input.equals("Show Buses"))
+        {
+            startActivity(new Intent(this, ShowBuses.class));
+        } else if (input.equals("Add Ride"))
+        {
+            startActivity(new Intent(this, AddRide.class));
+        } else
+        {
+            makeToast("Option not configured yet!");
+        }
+    }
+
+
 
 }
