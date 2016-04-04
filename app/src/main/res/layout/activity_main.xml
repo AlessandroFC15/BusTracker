@@ -37,7 +37,7 @@
 
         <EditText
             android:id="@+id/nameOfBus"
-            android:layout_width="150dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="16dp"

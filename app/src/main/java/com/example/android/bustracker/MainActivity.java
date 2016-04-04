@@ -15,10 +15,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     // Attributes
-    private BusData busData = BusData.getInstance();
-
-    // Constants
-    public final static String LIST_BUSES = "com.example.android.BusTracker.LIST_BUSES";
+    private BusData busData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
         setTitle("Home");
 
         configureMenu();
+
+        busData = new BusData(this);
     }
 
     public void onResume()
@@ -55,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
                 makeToast("Bus successfully added!");
             } else {
-                makeToast("Bus already registered");
+                makeToast("Bus already registered!");
             }
         } else {
             makeToast("Enter a valid name!");
@@ -175,7 +174,4 @@ public class MainActivity extends AppCompatActivity {
             makeToast("Option not configured yet!");
         }
     }
-
-
-
 }

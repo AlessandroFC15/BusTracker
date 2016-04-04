@@ -11,15 +11,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
 public class AddRide extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    // Attributes
-    private BusData busData = BusData.getInstance();
-    private Set<String> nameOfBuses = busData.getListOfBuses().keySet();
+    private BusData busData = new BusData(this);
     private String busSelected;
 
     @Override
@@ -29,7 +23,7 @@ public class AddRide extends AppCompatActivity implements AdapterView.OnItemSele
 
         setTitle("Add Ride");
 
-        if (nameOfBuses.isEmpty()) {
+        if (busData.isTableBusesEmpty()) {
             printWarning();
         } else {
             setSpinner();
@@ -41,13 +35,13 @@ public class AddRide extends AppCompatActivity implements AdapterView.OnItemSele
     private void setSpinner() {
 
         // Store all the names of buses in a list to use in the ArrayAdapter
-        List<String> listOfBuses = new ArrayList<>(nameOfBuses);
+        // List<String> listOfBuses = new ArrayList<>(busData.getAllBusesRegistered());
 
         Spinner spinner = (Spinner) findViewById(R.id.busSpinner);
 
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, listOfBuses);
+                android.R.layout.simple_spinner_item, busData.getAllBusesRegistered());
 
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
