@@ -6,12 +6,15 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class AddRide extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+    private static final int MAX_DURATION = 600;
 
     private BusData busData = new BusData(this);
     private String busSelected;
@@ -92,13 +95,48 @@ public class AddRide extends AppCompatActivity implements AdapterView.OnItemSele
             makeToast("Select a bus!");
             return;
         }
+
+        // We proceed to get a valid duration
+        int duration = getDurationOfRide();
+
+        if (duration == -1)
+        {
+            return;
+        }
+
         // We proceed to add a ride for that bus
-        if (busData.addRide(busSelected) == false) {
+        if (busData.addRide(busSelected, duration) == false) {
             makeToast("Operation failed. Try again!");
         } else {
             makeToast("Ride for bus " + busSelected + " added!");
         }
 
+    }
+
+    private int getDurationOfRide()
+    {
+        EditText editText = (EditText) findViewById(R.id.durationRide);
+
+        String input = editText.getText().toString().trim();
+
+        try {
+            int duration = Integer.parseInt(input);
+
+            if (duration > 0 && duration <= MAX_DURATION)
+            {
+                return duration;
+            } else
+            {
+                makeToast("Duration must be between 1 min and " +
+                        Integer.toString(MAX_DURATION) + " min!");
+                return -1;
+            }
+
+        } catch (NumberFormatException e)
+        {
+            makeToast("Enter a valid duration!");
+            return -1;
+        }
     }
 
     private void makeToast(String text) {

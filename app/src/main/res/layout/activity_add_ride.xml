@@ -57,7 +57,30 @@
                 android:paddingTop="16dp"></Spinner>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:paddingLeft="16dp"
+                android:paddingTop="16dp"
+                android:text="Duration: "/>
+
+            <EditText
+                android:id="@+id/durationRide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberSigned"
+                android:padding="10dp"
+                android:hint="45 min"/>
+
+        </LinearLayout>
+
         <Button
+            android:layout_marginTop="50dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
