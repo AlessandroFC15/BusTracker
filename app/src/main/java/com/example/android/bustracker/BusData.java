@@ -130,16 +130,75 @@ public class BusData extends SQLiteOpenHelper {
         return allNames;
     }
 
-    public boolean addRide(String nameOfBus)
+    /*
+    By adding a ride, we will update the value times_taken and total_duration
+     */
+
+    public boolean addRide(String nameOfBus, int duration)
     {
         if (isBusRegistered(nameOfBus))
         {
-            // listOfBuses.put(nameOfBus, listOfBuses.get(nameOfBus) + 1);
+            updateBusTable(nameOfBus, duration);
+
+            // addRideToRideTable(nameOfBus, duration, beginTime, endTime);
             return true;
         } else
         {
             return false;
         }
+    }
+
+    private void updateBusTable(String nameOfBus, int duration)
+    {
+        // 1st Step = Get the old values
+        SQLiteDatabase db = this.getReadableDatabase();
+        int timesTaken = 0;
+        float oldDuration = 0;
+
+        // Define a projection that specifies which columns from the database
+        // you will actually use after this query.
+        String[] projection = {
+                COLUMN_TIMES,
+                COLUMN_DURATION
+        };
+
+        String selection = COLUMN_NAME + " LIKE ?";
+
+        String selectionArgs[] = {nameOfBus};
+
+        Cursor c = db.query(
+                TABLE_NAME_BUSES,  // The table to query
+                projection,                               // The columns to return
+                selection,                                // The columns for the WHERE clause
+                selectionArgs,                            // The values for the WHERE clause
+                null,                                     // don't group the rows
+                null,                                     // don't filter by row groups
+                null                                // The sort order
+        );
+
+        try {
+            while (c.moveToNext()) {
+                timesTaken = c.getInt(c.getColumnIndex(COLUMN_TIMES));
+
+                oldDuration = c.getFloat(c.getColumnIndex(COLUMN_DURATION));
+            }
+        } finally {
+            c.close();
+        }
+
+        // 2nd Step | Update the values
+
+        // New value for one column
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_TIMES, timesTaken + 1);
+        values.put(COLUMN_DURATION, oldDuration + duration);
+
+        int count = db.update(
+                TABLE_NAME_BUSES,
+                values,
+                selection,
+                selectionArgs);
+
     }
 
     public boolean isTableBusesEmpty() {
